@@ -1,7 +1,6 @@
 package sessionapp.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,6 +22,7 @@ import sessionapp.models.context.EncryptedFileWalletServiceContext;
 import sessionapp.models.validated.Invalid;
 import sessionapp.models.validated.Valid;
 import sessionapp.services.EncryptedFileWalletService;
+import sessionapp.services.JSONWalletExporter;
 import sessionapp.utis.Config;
 import sessionapp.utis.printers.PrettyPrinter;
 import sessionapp.utis.validators.CategoryNameValidator;
@@ -316,8 +316,8 @@ public class CliController {
           ensureLoggedIn();
           var exportFileName = currentWallet.id() + "_" + System.currentTimeMillis();
           var exportFilePath = config.getExportsDirectory().resolve(exportFileName);
-          var mapper = new ObjectMapper();
-          var json = mapper.writeValueAsString(currentWallet);
+          var exporter = new JSONWalletExporter();
+          var json = exporter.export(currentWallet);
           if (!Files.exists(config.getExportsDirectory())) {
             Files.createDirectories(config.getExportsDirectory());
           }
@@ -339,8 +339,8 @@ public class CliController {
           }
           try {
             var json = Files.readString(importFilePath);
-            var mapper = new ObjectMapper();
-            var wallet = mapper.readValue(json, Wallet.class);
+            var importer = new JSONWalletExporter();
+            var wallet = importer.importWallet(json);
             walletService.saveWallet(context, wallet);
             System.out.printf("Кошелёк %s успешно импортирован\n", wallet.id());
           } catch (JsonProcessingException e) {
