@@ -35,6 +35,7 @@
     │
     ├───contracts
     │       UserService.java
+    │       WalletExporter.java
     │       WalletService.java
     │
     ├───controllers
@@ -71,6 +72,7 @@
     ├───services
     │       EncryptedFileWalletService.java
     │       InMemoryUserService.java
+    │       JSONWalletExporter.java
     │
     └───utis
         │   Config.java
@@ -91,6 +93,7 @@
 Содержит интерфейсы
 - UserService - сервис пользователей
 - WalletService - сервис кошельков
+- WalletExporter<T> - сервис для сериализации/десериализации кошельков в произвольном формате
 ##### controllers
 Содержит контроллеры
 - CliContoller - контроллер для работы с вводом/выводом через командную строку
@@ -121,6 +124,7 @@
 Содержит конкретные реализации интерфейсов сервисов
 - EncryptedFileWalletService - реализация WalletService, хранящая данные в оперативной памяти и сохраняющая данные о кошельках в отдельные зашифрованные файлы, используя пользовательский пароль в качестве источника ключа шифрования
 - InMemoryUserService - реализация UserService хранящая данные в оперативной памяти и сохраняющая эти данные на диск в формате JSON
+- JSONWalletExporter - реализация WalletExporter, сериализующая/десериализующая кошельки в формате JSON
 ##### utils
 Содержит различные утилиты
 - Config - объект, хранящий конфигурацию приложения

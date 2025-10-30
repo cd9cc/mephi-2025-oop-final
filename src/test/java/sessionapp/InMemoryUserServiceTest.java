@@ -2,6 +2,7 @@ package sessionapp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static sessionapp.TestUtils.deleteRecursively;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +25,7 @@ public class InMemoryUserServiceTest {
     Files.writeString(Path.of("config.properties"), "");
     config = Config.load();
     Files.deleteIfExists(config.getUsersFilePath());
-    Files.deleteIfExists(config.getWalletsDirectory());
+    deleteRecursively(config.getWalletsDirectory());
     walletService = new EncryptedFileWalletService(config);
     userService = new InMemoryUserService(config, walletService);
   }
@@ -33,7 +34,7 @@ public class InMemoryUserServiceTest {
   public void cleanup() throws IOException {
     Files.deleteIfExists(Path.of("config.properties"));
     Files.deleteIfExists(config.getUsersFilePath());
-    Files.deleteIfExists(config.getWalletsDirectory());
+    deleteRecursively(config.getWalletsDirectory());
   }
 
   @Test
