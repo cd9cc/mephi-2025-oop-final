@@ -22,7 +22,9 @@ public final class UserNameValidator {
     }
 
     if (forbiddenCharsRegex.matcher(userName).matches()) {
-      sb.append("имя пользователя содержит запрещённые символы, используйте символы из множества: " + allowedChars);
+      sb.append(
+          "имя пользователя содержит запрещённые символы, используйте символы из множества: "
+              + allowedChars);
     }
 
     if (sb.isEmpty()) {
