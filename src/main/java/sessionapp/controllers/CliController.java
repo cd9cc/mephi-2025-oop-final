@@ -279,6 +279,9 @@ public class CliController {
             currentWallet.setBudget(category, amount.get());
             walletService.saveWallet(context, currentWallet);
             System.out.println("Бюджет установлен");
+            if (amount.filter(Money::isZero).isPresent()) {
+              System.out.printf("Для категории %s установлен бюджет с лимитом 0!", category);
+            }
           } else {
             System.out.println("Не удалось разобрать сумму");
           }

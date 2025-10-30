@@ -6,6 +6,8 @@ import sessionapp.models.Wallet;
 import sessionapp.models.context.Context;
 
 public interface WalletService<T extends Context<WalletService<T>>> {
+  Wallet generateWallet();
+
   Wallet getWalletById(T context, UUID id) throws IOException;
 
   void saveWallet(T context, Wallet wallet) throws IOException;
