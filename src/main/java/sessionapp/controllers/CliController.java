@@ -83,7 +83,7 @@ public class CliController {
       case GET_BUDGET_CMD -> getBudget();
       case EXPORT_WALLET_CMD -> exportWallet();
       case IMPORT_WALLET_CMD -> importWallet();
-      default -> System.out.printf("Print \"%s\"\n", HELP_CMD);
+      default -> System.out.printf("Введите \"%s\" чтобы получить справку по командам\n", HELP_CMD);
     }
   }
 
