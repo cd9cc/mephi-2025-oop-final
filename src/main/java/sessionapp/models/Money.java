@@ -34,6 +34,10 @@ public final class Money {
     return amount > other.amount;
   }
 
+  public boolean isZero() {
+    return amount == 0;
+  }
+
   public static Money zero() {
     return new Money(0L);
   }
