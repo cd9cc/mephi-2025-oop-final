@@ -22,7 +22,7 @@
 ```
 
 #### Зависимости
-В проекте используются следующие внешние библиотеки: \
+В проекте используются следующие внешние библиотеки:
 - jackson-databind https://central.sonatype.com/artifact/com.fasterxml.jackson.core/jackson-databind - для сериализации/десериализации JSON
 - spotless-plugin-gradle https://central.sonatype.com/artifact/com.diffplug.spotless/spotless-plugin-gradle - форматтер/линтер
 - junit-jupiter https://central.sonatype.com/artifact/org.mockito/junit-jupiter - фреймворк для юнит-тестов
